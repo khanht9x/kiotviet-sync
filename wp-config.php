@@ -23,10 +23,10 @@
 define( 'DB_NAME', 'kiotvietsync' );
 
 /** MySQL database username */
-define( 'DB_USER', 'root' );
+define( 'DB_USER', 'admin' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'root' );
+define( 'DB_PASSWORD', '943c7937503926d84' );
 
 /** MySQL hostname */
 define( 'DB_HOST', 'mariadb' );
