@@ -1,0 +1,9 @@
+2019-07-01T09:59:37+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php:67
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->checkVersion('')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#2 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#3 /var/www/kiotsync/backend/wp-admin/admin-ajax.php(172): do_action('wp_ajax_kiotvie...')
+#4 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php on line 67
+

@@ -1,0 +1,10 @@
+2019-05-30T08:18:38+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Product_Simple::get_variation_attributes() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/public_actions/OrderHookAction.php:160
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/public_actions/OrderHookAction.php(64): OrderHookAction->create_kv_product_from_wc_product(Object(WC_Product_Simple))
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(288): OrderHookAction->order_processed(7152)
+#2 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/woocommerce/includes/class-wc-checkout.php(1120): do_action('woocommerce_che...', 7152, Array, Object(WC_Order))
+#5 /var/www/kiotsync/backend/wp-content/plugins/woocommerce/includes/class-wc-ajax.php(462): WC_Checkout->process_checkout()
+#6 /var/www/kiotsync/backend/wp-includes/class-wp-ho in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/public_actions/OrderHookAction.php on line 160
+

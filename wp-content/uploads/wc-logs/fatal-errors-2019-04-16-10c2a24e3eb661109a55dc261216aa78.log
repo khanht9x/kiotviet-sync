@@ -1,0 +1,268 @@
+2019-04-16T08:29:30+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type('')
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(479): KiotvietWcProduct->create_media('')
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Variable), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(63): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp-incl in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:29:30+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(479): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:29:30+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(479): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:29:30+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(479): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:29:31+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(479): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:29:31+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(479): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:29:31+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(479): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:29:31+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(479): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:29:32+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(479): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:31:06+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type('')
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(480): KiotvietWcProduct->create_media('')
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Variable), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(63): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp-incl in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:31:06+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(480): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:31:07+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(480): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:31:07+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(480): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:31:07+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(480): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:31:07+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(480): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:31:07+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(480): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:31:08+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(480): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:31:08+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(443): get_image_mime_type(Array)
+#1 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(480): KiotvietWcProduct->create_media(Array)
+#2 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/helpers/KiotvietWcProduct.php(69): KiotvietWcProduct->set_image_data(Object(WC_Product_Simple), Array)
+#3 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-transform-products.php(49): KiotvietWcProduct->import_product(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/api/class-kiotviet-sync-api.php(100): Kiotviet_Sync_Transform_Products->addProduct()
+#5 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Api->exec('')
+#6 /var/www/kiotsync/backend/wp- in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:32:15+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php(204): get_image_mime_type('https://cdn-app...')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#2 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#4 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#5 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:33:15+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php(204): get_image_mime_type('https://cdn-app...')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#2 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#4 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#5 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:33:24+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php(204): get_image_mime_type('https://cdn-app...')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#2 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#4 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#5 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:33:40+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php(202): get_image_mime_type('https://cdn-app...')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#2 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#4 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#5 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:33:43+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php(202): get_image_mime_type('https://cdn-app...')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#2 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#4 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#5 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:33:46+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php(202): get_image_mime_type('https://cdn-app...')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#2 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#4 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#5 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:34:34+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php:57
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php(202): get_image_mime_type('https://cdn-app...')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#2 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#4 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#5 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/bootstrap.php on line 57
+
+2019-04-16T08:35:47+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php:202
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#2 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#3 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#4 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php on line 202
+
+2019-04-16T09:05:50+00:00 CRITICAL Uncaught Error: Call to undefined function exif_imagetype() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php:202
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#2 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#3 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#4 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php on line 202
+

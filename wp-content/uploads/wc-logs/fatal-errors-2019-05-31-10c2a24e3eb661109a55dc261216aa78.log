@@ -1,0 +1,65 @@
+2019-05-31T09:17:56+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function WC_Product::get_attribute(), 0 passed in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php on line 204 and exactly 1 expected in /var/www/kiotsync/backend/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-product.php:1873
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php(204): WC_Product->get_attribute()
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#2 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#4 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#5 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-product.php on line 1873
+
+2019-05-31T09:52:45+00:00 CRITICAL Uncaught Error: Call to a member function get_product_image_id() on null in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php:203
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#2 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#3 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#4 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php on line 203
+
+2019-05-31T09:52:52+00:00 CRITICAL Uncaught Error: Call to a member function get_product_image_id() on boolean in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php:203
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#2 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#3 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#4 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php on line 203
+
+2019-05-31T09:53:55+00:00 CRITICAL Uncaught Error: Call to a member function get_product_image_id() on boolean in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php:203
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#2 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#3 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#4 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php on line 203
+
+2019-05-31T09:53:57+00:00 CRITICAL Uncaught Error: Call to a member function get_product_image_id() on boolean in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php:203
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#2 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#3 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#4 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php on line 203
+
+2019-05-31T09:54:07+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Product_Simple::get_product_image_id() in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php:203
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): Kiotviet_Sync_Admin->action_kiotvietsync_product('')
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#2 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#3 /var/www/kiotsync/backend/wp-admin/admin.php(253): do_action('kiotviet-sync_p...')
+#4 {main}
+  thrown in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/admin/class-kiotviet-sync-admin.php on line 203
+
+2019-05-31T10:37:48+00:00 CRITICAL Uncaught Error: Call to a member function get_image_id() on array in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/public_actions/OrderHookAction.php:205
+Stack trace:
+#0 /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/public_actions/OrderHookAction.php(65): OrderHookAction->create_kv_product_from_wc_product(Object(WC_Product_Variation))
+#1 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(288): OrderHookAction->order_processed(7166)
+#2 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 /var/www/kiotsync/backend/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#4 /var/www/kiotsync/backend/wp-content/plugins/woocommerce/includes/class-wc-checkout.php(1120): do_action('woocommerce_che...', 7166, Array, Object(WC_Order))
+#5 /var/www/kiotsync/backend/wp-content/plugins/woocommerce/includes/class-wc-ajax.php(462): WC_Checkout->process_checkout()
+#6 /var/www/kiotsync/backend/wp-includes/class-wp-hook.php(286): WC_AJ in /var/www/kiotsync/backend/wp-content/plugins/kiotviet-sync/includes/public_actions/OrderHookAction.php on line 205
+
