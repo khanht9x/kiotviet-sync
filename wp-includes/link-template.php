@@ -37,7 +37,7 @@ function the_permalink( $post = 0 ) {
  *
  * @since 2.2.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param string $string      URL with or without a trailing slash.
  * @param string $type_of_url Optional. The type of URL being considered (e.g. single, category, etc)
@@ -212,7 +212,7 @@ function get_permalink( $post = 0, $leavename = false ) {
 			$author     = $authordata->user_nicename;
 		}
 
-		$date           = explode( ' ', date( 'Y m d H i s', $unixtime ) );
+		$date           = explode( ' ', gmdate( 'Y m d H i s', $unixtime ) );
 		$rewritereplace =
 		array(
 			$date[0],
@@ -252,7 +252,7 @@ function get_permalink( $post = 0, $leavename = false ) {
  *
  * @since 3.0.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param int|WP_Post $id        Optional. Post ID or post object. Default is the global `$post`.
  * @param bool        $leavename Optional, defaults to false. Whether to keep post name. Default false.
@@ -355,7 +355,7 @@ function get_page_link( $post = false, $leavename = false, $sample = false ) {
  * @since 2.1.0
  * @access private
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param int|WP_Post $post      Optional. Post ID or object. Default uses the global `$post`.
  * @param bool        $leavename Optional. Whether to keep the page name. Default false.
@@ -401,7 +401,7 @@ function _get_page_link( $post = false, $leavename = false, $sample = false ) {
  *
  * @since 2.0.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param int|object $post      Optional. Post ID or object. Default uses the global `$post`.
  * @param bool       $leavename Optional. Whether to keep the page name. Default false.
@@ -462,7 +462,7 @@ function get_attachment_link( $post = null, $leavename = false ) {
  *
  * @since 1.5.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param int|bool $year False for current year or year for permalink.
  * @return string The permalink for the specified year archive.
@@ -496,7 +496,7 @@ function get_year_link( $year ) {
  *
  * @since 1.0.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param bool|int $year  False for current year. Integer of year.
  * @param bool|int $month False for current month. Integer of month.
@@ -536,7 +536,7 @@ function get_month_link( $year, $month ) {
  *
  * @since 1.0.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param bool|int $year  False for current year. Integer of year.
  * @param bool|int $month False for current month. Integer of month.
@@ -584,7 +584,8 @@ function get_day_link( $year, $month, $day ) {
  * @since 3.0.0
  *
  * @param string $anchor The link's anchor text.
- * @param string $feed   Optional. Feed type. Default empty.
+ * @param string $feed   Optional. Feed type. Possible values include 'rss2', 'atom'.
+ *                       Default is the value of get_default_feed().
  */
 function the_feed_link( $anchor, $feed = '' ) {
 	$link = '<a href="' . esc_url( get_feed_link( $feed ) ) . '">' . $anchor . '</a>';
@@ -595,8 +596,8 @@ function the_feed_link( $anchor, $feed = '' ) {
 	 * @since 3.0.0
 	 *
 	 * @param string $link The complete anchor tag for a feed link.
-	 * @param string $feed The feed type, or an empty string for the
-	 *                     default feed type.
+	 * @param string $feed The feed type. Possible values include 'rss2', 'atom',
+	 *                     or an empty string for the default feed type.
 	 */
 	echo apply_filters( 'the_feed_link', $link, $feed );
 }
@@ -606,9 +607,10 @@ function the_feed_link( $anchor, $feed = '' ) {
  *
  * @since 1.5.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
- * @param string $feed Optional. Feed type. Default empty.
+ * @param string $feed Optional. Feed type. Possible values include 'rss2', 'atom'.
+ *                     Default is the value of get_default_feed().
  * @return string The feed permalink.
  */
 function get_feed_link( $feed = '' ) {
@@ -646,7 +648,8 @@ function get_feed_link( $feed = '' ) {
 	 * @since 1.5.0
 	 *
 	 * @param string $output The feed permalink.
-	 * @param string $feed   Feed type.
+	 * @param string $feed   The feed type. Possible values include 'rss2', 'atom',
+	 *                       or an empty string for the default feed type.
 	 */
 	return apply_filters( 'feed_link', $output, $feed );
 }
@@ -657,7 +660,8 @@ function get_feed_link( $feed = '' ) {
  * @since 2.2.0
  *
  * @param int    $post_id Optional. Post ID. Default is the ID of the global `$post`.
- * @param string $feed    Optional. Feed type. Default empty.
+ * @param string $feed    Optional. Feed type. Possible values include 'rss2', 'atom'.
+ *                        Default is the value of get_default_feed().
  * @return string The permalink for the comments feed for the given post.
  */
 function get_post_comments_feed_link( $post_id = 0, $feed = '' ) {
@@ -743,7 +747,8 @@ function get_post_comments_feed_link( $post_id = 0, $feed = '' ) {
  *
  * @param string $link_text Optional. Descriptive link text. Default 'Comments Feed'.
  * @param int    $post_id   Optional. Post ID. Default is the ID of the global `$post`.
- * @param string $feed      Optional. Feed format. Default empty.
+ * @param string $feed      Optional. Feed type. Possible values include 'rss2', 'atom'.
+ *                          Default is the value of get_default_feed().
  */
 function post_comments_feed_link( $link_text = '', $post_id = '', $feed = '' ) {
 	$url = get_post_comments_feed_link( $post_id, $feed );
@@ -759,7 +764,8 @@ function post_comments_feed_link( $link_text = '', $post_id = '', $feed = '' ) {
 	 *
 	 * @param string $link    The complete anchor tag for the comment feed link.
 	 * @param int    $post_id Post ID.
-	 * @param string $feed    The feed type, or an empty string for the default feed type.
+	 * @param string $feed    The feed type. Possible values include 'rss2', 'atom',
+	 *                        or an empty string for the default feed type.
 	 */
 	echo apply_filters( 'post_comments_feed_link_html', $link, $post_id, $feed );
 }
@@ -773,7 +779,8 @@ function post_comments_feed_link( $link_text = '', $post_id = '', $feed = '' ) {
  * @since 2.5.0
  *
  * @param int    $author_id Author ID.
- * @param string $feed      Optional. Feed type. Default empty.
+ * @param string $feed      Optional. Feed type. Possible values include 'rss2', 'atom'.
+ *                          Default is the value of get_default_feed().
  * @return string Link to the feed for the author specified by $author_id.
  */
 function get_author_feed_link( $author_id, $feed = '' ) {
@@ -803,7 +810,7 @@ function get_author_feed_link( $author_id, $feed = '' ) {
 	 * @since 1.5.1
 	 *
 	 * @param string $link The author feed link.
-	 * @param string $feed Feed type.
+	 * @param string $feed Feed type. Possible values include 'rss2', 'atom'.
 	 */
 	$link = apply_filters( 'author_feed_link', $link, $feed );
 
@@ -819,7 +826,8 @@ function get_author_feed_link( $author_id, $feed = '' ) {
  * @since 2.5.0
  *
  * @param int    $cat_id Category ID.
- * @param string $feed   Optional. Feed type. Default empty.
+ * @param string $feed   Optional. Feed type. Possible values include 'rss2', 'atom'.
+ *                       Default is the value of get_default_feed().
  * @return string Link to the feed for the category specified by $cat_id.
  */
 function get_category_feed_link( $cat_id, $feed = '' ) {
@@ -836,7 +844,8 @@ function get_category_feed_link( $cat_id, $feed = '' ) {
  *
  * @param int    $term_id  Term ID.
  * @param string $taxonomy Optional. Taxonomy of `$term_id`. Default 'category'.
- * @param string $feed     Optional. Feed type. Default empty.
+ * @param string $feed     Optional. Feed type. Possible values include 'rss2', 'atom'.
+ *                         Default is the value of get_default_feed().
  * @return string|false Link to the feed for the term specified by $term_id and $taxonomy.
  */
 function get_term_feed_link( $term_id, $taxonomy = 'category', $feed = '' ) {
@@ -881,7 +890,7 @@ function get_term_feed_link( $term_id, $taxonomy = 'category', $feed = '' ) {
 		 * @since 1.5.1
 		 *
 		 * @param string $link The category feed link.
-		 * @param string $feed Feed type.
+		 * @param string $feed Feed type. Possible values include 'rss2', 'atom'.
 		 */
 		$link = apply_filters( 'category_feed_link', $link, $feed );
 	} elseif ( 'post_tag' == $taxonomy ) {
@@ -891,7 +900,7 @@ function get_term_feed_link( $term_id, $taxonomy = 'category', $feed = '' ) {
 		 * @since 2.3.0
 		 *
 		 * @param string $link The tag feed link.
-		 * @param string $feed Feed type.
+		 * @param string $feed Feed type. Possible values include 'rss2', 'atom'.
 		 */
 		$link = apply_filters( 'tag_feed_link', $link, $feed );
 	} else {
@@ -900,8 +909,8 @@ function get_term_feed_link( $term_id, $taxonomy = 'category', $feed = '' ) {
 		 *
 		 * @since 3.0.0
 		 *
-		 * @param string $link The taxonomy feed link.
-		 * @param string $feed Feed type.
+		 * @param string $link     The taxonomy feed link.
+		 * @param string $feed     Feed type. Possible values include 'rss2', 'atom'.
 		 * @param string $taxonomy The taxonomy name.
 		 */
 		$link = apply_filters( 'taxonomy_feed_link', $link, $feed, $taxonomy );
@@ -916,7 +925,8 @@ function get_term_feed_link( $term_id, $taxonomy = 'category', $feed = '' ) {
  * @since 2.3.0
  *
  * @param int    $tag_id Tag ID.
- * @param string $feed   Optional. Feed type. Default empty.
+ * @param string $feed   Optional. Feed type. Possible values include 'rss2', 'atom'.
+ *                       Default is the value of get_default_feed().
  * @return string The feed permalink for the given tag.
  */
 function get_tag_feed_link( $tag_id, $feed = '' ) {
@@ -1076,7 +1086,7 @@ function edit_term_link( $link = '', $before = '', $after = '', $term = null, $e
  *
  * @since  3.0.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param string $query Optional. The query string to use. If empty the current query is used. Default empty.
  * @return string The search permalink.
@@ -1117,10 +1127,11 @@ function get_search_link( $query = '' ) {
  *
  * @since 2.5.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param string $search_query Optional. Search query. Default empty.
- * @param string $feed         Optional. Feed type. Default empty.
+ * @param string $feed         Optional. Feed type. Possible values include 'rss2', 'atom'.
+ *                             Default is the value of get_default_feed().
  * @return string The search results feed permalink.
  */
 function get_search_feed_link( $search_query = '', $feed = '' ) {
@@ -1146,7 +1157,7 @@ function get_search_feed_link( $search_query = '', $feed = '' ) {
 	 * @since 2.5.0
 	 *
 	 * @param string $link Search feed link.
-	 * @param string $feed Feed type.
+	 * @param string $feed Feed type. Possible values include 'rss2', 'atom'.
 	 * @param string $type The search type. One of 'posts' or 'comments'.
 	 */
 	return apply_filters( 'search_feed_link', $link, $feed, 'posts' );
@@ -1157,10 +1168,11 @@ function get_search_feed_link( $search_query = '', $feed = '' ) {
  *
  * @since 2.5.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param string $search_query Optional. Search query. Default empty.
- * @param string $feed         Optional. Feed type. Default empty.
+ * @param string $feed         Optional. Feed type. Possible values include 'rss2', 'atom'.
+ *                             Default is the value of get_default_feed().
  * @return string The comments feed search results permalink.
  */
 function get_search_comments_feed_link( $search_query = '', $feed = '' ) {
@@ -1190,14 +1202,16 @@ function get_search_comments_feed_link( $search_query = '', $feed = '' ) {
  * @since 3.1.0
  * @since 4.5.0 Support for posts was added.
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param string $post_type Post type.
  * @return string|false The post type archive permalink.
  */
 function get_post_type_archive_link( $post_type ) {
 	global $wp_rewrite;
-	if ( ! $post_type_obj = get_post_type_object( $post_type ) ) {
+
+	$post_type_obj = get_post_type_object( $post_type );
+	if ( ! $post_type_obj ) {
 		return false;
 	}
 
@@ -1247,7 +1261,8 @@ function get_post_type_archive_link( $post_type ) {
  * @since 3.1.0
  *
  * @param string $post_type Post type
- * @param string $feed      Optional. Feed type. Default empty.
+ * @param string $feed      Optional. Feed type. Possible values include 'rss2', 'atom'.
+ *                          Default is the value of get_default_feed().
  * @return string|false The post type feed permalink.
  */
 function get_post_type_archive_feed_link( $post_type, $feed = '' ) {
@@ -1256,7 +1271,8 @@ function get_post_type_archive_feed_link( $post_type, $feed = '' ) {
 		$feed = $default_feed;
 	}
 
-	if ( ! $link = get_post_type_archive_link( $post_type ) ) {
+	$link = get_post_type_archive_link( $post_type );
+	if ( ! $link ) {
 		return false;
 	}
 
@@ -1277,7 +1293,7 @@ function get_post_type_archive_feed_link( $post_type, $feed = '' ) {
 	 * @since 3.1.0
 	 *
 	 * @param string $link The post type archive feed link.
-	 * @param string $feed Feed type.
+	 * @param string $feed Feed type. Possible values include 'rss2', 'atom'.
 	 */
 	return apply_filters( 'post_type_archive_feed_link', $link, $feed );
 }
@@ -1338,7 +1354,8 @@ function get_preview_post_link( $post = null, $query_args = array(), $preview_li
  *                     not allow an editing UI.
  */
 function get_edit_post_link( $id = 0, $context = 'display' ) {
-	if ( ! $post = get_post( $id ) ) {
+	$post = get_post( $id );
+	if ( ! $post ) {
 		return;
 	}
 
@@ -1391,11 +1408,13 @@ function get_edit_post_link( $id = 0, $context = 'display' ) {
  * @param string      $class  Optional. Add custom class to link. Default 'post-edit-link'.
  */
 function edit_post_link( $text = null, $before = '', $after = '', $id = 0, $class = 'post-edit-link' ) {
-	if ( ! $post = get_post( $id ) ) {
+	$post = get_post( $id );
+	if ( ! $post ) {
 		return;
 	}
 
-	if ( ! $url = get_edit_post_link( $post->ID ) ) {
+	$url = get_edit_post_link( $post->ID );
+	if ( ! $url ) {
 		return;
 	}
 
@@ -1434,7 +1453,8 @@ function get_delete_post_link( $id = 0, $deprecated = '', $force_delete = false 
 		_deprecated_argument( __FUNCTION__, '3.0.0' );
 	}
 
-	if ( ! $post = get_post( $id ) ) {
+	$post = get_post( $id );
+	if ( ! $post ) {
 		return;
 	}
 
@@ -1677,7 +1697,8 @@ function get_next_post( $in_same_term = false, $excluded_terms = '', $taxonomy =
 function get_adjacent_post( $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
 	global $wpdb;
 
-	if ( ( ! $post = get_post() ) || ! taxonomy_exists( $taxonomy ) ) {
+	$post = get_post();
+	if ( ! $post || ! taxonomy_exists( $taxonomy ) ) {
 		return null;
 	}
 
@@ -1690,7 +1711,15 @@ function get_adjacent_post( $in_same_term = false, $excluded_terms = '', $previo
 	if ( ! empty( $excluded_terms ) && ! is_array( $excluded_terms ) ) {
 		// Back-compat, $excluded_terms used to be $excluded_categories with IDs separated by " and ".
 		if ( false !== strpos( $excluded_terms, ' and ' ) ) {
-			_deprecated_argument( __FUNCTION__, '3.3.0', sprintf( __( 'Use commas instead of %s to separate excluded terms.' ), "'and'" ) );
+			_deprecated_argument(
+				__FUNCTION__,
+				'3.3.0',
+				sprintf(
+					/* translators: %s: The word 'and'. */
+					__( 'Use commas instead of %s to separate excluded terms.' ),
+					"'and'"
+				)
+			);
 			$excluded_terms = explode( ' and ', $excluded_terms );
 		} else {
 			$excluded_terms = explode( ',', $excluded_terms );
@@ -1859,7 +1888,8 @@ function get_adjacent_post( $in_same_term = false, $excluded_terms = '', $previo
  * @return string|void The adjacent post relational link URL.
  */
 function get_adjacent_post_rel_link( $title = '%title', $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
-	if ( $previous && is_attachment() && $post = get_post() ) {
+	$post = get_post();
+	if ( $previous && is_attachment() && $post ) {
 		$post = get_post( $post->post_parent );
 	} else {
 		$post = get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
@@ -2187,7 +2217,7 @@ function adjacent_post_link( $format, $link, $in_same_term = false, $excluded_te
  *
  * @since 1.5.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param int  $pagenum Optional. Page number. Default 1.
  * @param bool $escape  Optional. Whether to escape the URL for display, with esc_url(). Defaults to true.
@@ -2248,6 +2278,7 @@ function get_pagenum_link( $pagenum = 1, $escape = true ) {
 	 * Filters the page number link for the current request.
 	 *
 	 * @since 2.5.0
+	 * @since 5.2.0 Added the `$pagenum` argument.
 	 *
 	 * @param string $result  The page number link.
 	 * @param int    $pagenum The page number.
@@ -2312,7 +2343,7 @@ function next_posts( $max_page = 0, $echo = true ) {
  * @since 2.7.0
  *
  * @global int      $paged
- * @global WP_Query $wp_query
+ * @global WP_Query $wp_query WordPress Query object.
  *
  * @param string $label    Content for link text.
  * @param int    $max_page Optional. Max pages. Default 0.
@@ -2450,7 +2481,7 @@ function previous_posts_link( $label = null ) {
  *
  * @since 2.8.0
  *
- * @global WP_Query $wp_query
+ * @global WP_Query $wp_query WordPress Query object.
  *
  * @param string|array $args {
  *     Optional. Arguments to build the post pages link navigation.
@@ -2745,7 +2776,7 @@ function _navigation_markup( $links, $class = 'posts-navigation', $screen_reader
  *
  * @since 2.7.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param int $pagenum  Optional. Page number. Default 1.
  * @param int $max_page Optional. The maximum number of comment pages. Default 0.
@@ -2791,7 +2822,7 @@ function get_comments_pagenum_link( $pagenum = 1, $max_page = 0 ) {
  *
  * @since 2.7.1
  *
- * @global WP_Query $wp_query
+ * @global WP_Query $wp_query WordPress Query object.
  *
  * @param string $label    Optional. Label for link text. Default empty.
  * @param int    $max_page Optional. Max page. Default 0.
@@ -2902,7 +2933,7 @@ function previous_comments_link( $label = '' ) {
  * @see paginate_links()
  * @since 2.7.0
  *
- * @global WP_Rewrite $wp_rewrite
+ * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
  *
  * @param string|array $args Optional args. See paginate_links(). Default empty array.
  * @return string|array|void Markup for comment page links or array of comment page links.
@@ -4082,7 +4113,8 @@ function get_avatar_data( $id_or_email, $args = null ) {
 	}
 
 	$email_hash = '';
-	$user       = $email = false;
+	$user       = false;
+	$email      = false;
 
 	if ( is_object( $id_or_email ) && isset( $id_or_email->comment_ID ) ) {
 		$id_or_email = get_comment( $id_or_email );

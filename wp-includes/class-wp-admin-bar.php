@@ -144,7 +144,8 @@ class WP_Admin_Bar {
 		);
 
 		// If the node already exists, keep any data that isn't provided.
-		if ( $maybe_defaults = $this->get_node( $args['id'] ) ) {
+		$maybe_defaults = $this->get_node( $args['id'] );
+		if ( $maybe_defaults ) {
 			$defaults = get_object_vars( $maybe_defaults );
 		}
 
@@ -180,10 +181,11 @@ class WP_Admin_Bar {
 	 * Gets a node.
 	 *
 	 * @param string $id
-	 * @return object Node.
+	 * @return object|void Node.
 	 */
 	final public function get_node( $id ) {
-		if ( $node = $this->_get_node( $id ) ) {
+		$node = $this->_get_node( $id );
+		if ( $node ) {
 			return clone $node;
 		}
 	}
@@ -210,7 +212,8 @@ class WP_Admin_Bar {
 	 * @return array|void
 	 */
 	final public function get_nodes() {
-		if ( ! $nodes = $this->_get_nodes() ) {
+		$nodes = $this->_get_nodes();
+		if ( ! $nodes ) {
 			return;
 		}
 
@@ -312,7 +315,8 @@ class WP_Admin_Bar {
 			}
 
 			// Fetch the parent node. If it isn't registered, ignore the node.
-			if ( ! $parent = $this->_get_node( $node->parent ) ) {
+			$parent = $this->_get_node( $node->parent );
+			if ( ! $parent ) {
 				continue;
 			}
 

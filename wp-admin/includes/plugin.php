@@ -9,20 +9,19 @@
 /**
  * Parses the plugin contents to retrieve plugin's metadata.
  *
- * The metadata of the plugin's data searches for the following in the plugin's
- * header. All plugin data must be on its own line. For plugin description, it
- * must not have any newlines or only parts of the description will be displayed
- * and the same goes for the plugin data. The below is formatted for printing.
+ * All plugin headers must be on their own line. Plugin description must not have
+ * any newlines, otherwise only parts of the description will be displayed.
+ * The below is formatted for printing.
  *
  *     /*
- *     Plugin Name: Name of Plugin
- *     Plugin URI: Link to plugin information
- *     Description: Plugin Description
- *     Author: Plugin author's name
- *     Author URI: Link to the author's web site
- *     Version: Must be set in the plugin for WordPress 2.3+
+ *     Plugin Name: Name of the plugin.
+ *     Plugin URI: The home page of the plugin.
+ *     Description: Plugin description.
+ *     Author: Plugin author's name.
+ *     Author URI: Link to the author's website.
+ *     Version: Plugin version.
  *     Text Domain: Optional. Unique identifier, should be same as the one used in
- *          load_plugin_textdomain()
+ *          load_plugin_textdomain().
  *     Domain Path: Optional. Only useful if the translations are located in a
  *          folder above the plugin's base path. For example, if .mo files are
  *          located in the locale folder then Domain Path will be "/locale/" and
@@ -31,14 +30,12 @@
  *     Network: Optional. Specify "Network: true" to require that a plugin is activated
  *          across all sites in an installation. This will prevent a plugin from being
  *          activated on a single site when Multisite is enabled.
- *      * / # Remove the space to close comment
+ *     Requires at least: Optional. Specify the minimum required WordPress version.
+ *     Requires PHP: Optional. Specify the minimum required PHP version.
+ *     * / # Remove the space to close comment.
  *
- * Some users have issues with opening large files and manipulating the contents
- * for want is usually the first 1kiB or 2kiB. This function stops pulling in
- * the plugin contents when it has all of the required plugin data.
- *
- * The first 8kiB of the file will be pulled in and if the plugin data is not
- * within that first 8kiB, then the plugin author should correct their plugin
+ * The first 8 KB of the file will be pulled in and if the plugin data is not
+ * within that first 8 KB, then the plugin author should correct their plugin
  * and move the plugin data headers to the top.
  *
  * The plugin file is assumed to have permissions to allow for scripts to read
@@ -46,6 +43,7 @@
  * reading.
  *
  * @since 1.5.0
+ * @since 5.3.0 Added support for `Requires at least` and `Requires PHP` headers.
  *
  * @param string $plugin_file Absolute path to the main plugin file.
  * @param bool   $markup      Optional. If the returned data should have HTML markup applied.
@@ -63,6 +61,8 @@
  *     @type string $TextDomain  Plugin textdomain.
  *     @type string $DomainPath  Plugins relative directory path to .mo files.
  *     @type bool   $Network     Whether the plugin can only be activated network-wide.
+ *     @type string $RequiresWP  Minimum required version of WordPress.
+ *     @type string $RequiresPHP Minimum required version of PHP.
  * }
  */
 function get_plugin_data( $plugin_file, $markup = true, $translate = true ) {
@@ -77,6 +77,8 @@ function get_plugin_data( $plugin_file, $markup = true, $translate = true ) {
 		'TextDomain'  => 'Text Domain',
 		'DomainPath'  => 'Domain Path',
 		'Network'     => 'Network',
+		'RequiresWP'  => 'Requires at least',
+		'RequiresPHP' => 'Requires PHP',
 		// Site Wide Only is deprecated in favor of Network.
 		'_sitewide'   => 'Site Wide Only',
 	);
@@ -145,7 +147,8 @@ function _get_plugin_data_markup_translate( $plugin_file, $plugin_data, $markup 
 
 	// Translate fields
 	if ( $translate ) {
-		if ( $textdomain = $plugin_data['TextDomain'] ) {
+		$textdomain = $plugin_data['TextDomain'];
+		if ( $textdomain ) {
 			if ( ! is_textdomain_loaded( $textdomain ) ) {
 				if ( $plugin_data['DomainPath'] ) {
 					load_plugin_textdomain( $textdomain, false, dirname( $plugin_file ) . $plugin_data['DomainPath'] );
@@ -206,7 +209,11 @@ function _get_plugin_data_markup_translate( $plugin_file, $plugin_data, $markup 
 		$plugin_data['Description'] = wptexturize( $plugin_data['Description'] );
 
 		if ( $plugin_data['Author'] ) {
-			$plugin_data['Description'] .= ' <cite>' . sprintf( __( 'By %s.' ), $plugin_data['Author'] ) . '</cite>';
+			$plugin_data['Description'] .= sprintf(
+				/* translators: %s: Plugin author. */
+				' <cite>' . __( 'By %s.' ) . '</cite>',
+				$plugin_data['Author']
+			);
 		}
 	}
 
@@ -357,7 +364,8 @@ function get_mu_plugins() {
 	if ( ! is_dir( WPMU_PLUGIN_DIR ) ) {
 		return $wp_plugins;
 	}
-	if ( $plugins_dir = @ opendir( WPMU_PLUGIN_DIR ) ) {
+	$plugins_dir = @opendir( WPMU_PLUGIN_DIR );
+	if ( $plugins_dir ) {
 		while ( ( $file = readdir( $plugins_dir ) ) !== false ) {
 			if ( substr( $file, -4 ) == '.php' ) {
 				$plugin_files[] = $file;
@@ -367,7 +375,7 @@ function get_mu_plugins() {
 		return $wp_plugins;
 	}
 
-	@closedir( $plugins_dir );
+	closedir( $plugins_dir );
 
 	if ( empty( $plugin_files ) ) {
 		return $wp_plugins;
@@ -424,7 +432,8 @@ function get_dropins() {
 	$_dropins = _get_dropins();
 
 	// These exist in the wp-content directory
-	if ( $plugins_dir = @ opendir( WP_CONTENT_DIR ) ) {
+	$plugins_dir = @opendir( WP_CONTENT_DIR );
+	if ( $plugins_dir ) {
 		while ( ( $file = readdir( $plugins_dir ) ) !== false ) {
 			if ( isset( $_dropins[ $file ] ) ) {
 				$plugin_files[] = $file;
@@ -434,7 +443,7 @@ function get_dropins() {
 		return $dropins;
 	}
 
-	@closedir( $plugins_dir );
+	closedir( $plugins_dir );
 
 	if ( empty( $plugin_files ) ) {
 		return $dropins;
@@ -726,8 +735,9 @@ function deactivate_plugins( $plugins, $silent = false, $network_wide = null ) {
 	if ( is_multisite() ) {
 		$network_current = get_site_option( 'active_sitewide_plugins', array() );
 	}
-	$current = get_option( 'active_plugins', array() );
-	$do_blog = $do_network = false;
+	$current    = get_option( 'active_plugins', array() );
+	$do_blog    = false;
+	$do_network = false;
 
 	foreach ( (array) $plugins as $plugin ) {
 		$plugin = plugin_basename( trim( $plugin ) );
@@ -985,7 +995,8 @@ function delete_plugins( $plugins, $deprecated = '' ) {
 	}
 
 	// Remove deleted plugins from the plugin updates list.
-	if ( $current = get_site_transient( 'update_plugins' ) ) {
+	$current = get_site_transient( 'update_plugins' );
+	if ( $current ) {
 		// Don't remove the plugins that weren't deleted.
 		$deleted = array_diff( $plugins, $errors );
 
@@ -998,10 +1009,10 @@ function delete_plugins( $plugins, $deprecated = '' ) {
 
 	if ( ! empty( $errors ) ) {
 		if ( 1 === count( $errors ) ) {
-			/* translators: %s: plugin filename */
+			/* translators: %s: Plugin filename. */
 			$message = __( 'Could not fully remove the plugin %s.' );
 		} else {
-			/* translators: %s: comma-separated list of plugin filenames */
+			/* translators: %s: Comma-separated list of plugin filenames. */
 			$message = __( 'Could not fully remove the plugins %s.' );
 		}
 
@@ -1085,6 +1096,10 @@ function validate_plugin( $plugin ) {
  */
 function validate_plugin_requirements( $plugin ) {
 	$readme_file = WP_PLUGIN_DIR . '/' . dirname( $plugin ) . '/readme.txt';
+	$plugin_data = array(
+		'requires'     => '',
+		'requires_php' => '',
+	);
 
 	if ( file_exists( $readme_file ) ) {
 		$plugin_data = get_file_data(
@@ -1095,20 +1110,22 @@ function validate_plugin_requirements( $plugin ) {
 			),
 			'plugin'
 		);
-	} else {
-		return true;
 	}
 
-	$plugin_data['wp_compatible']  = version_compare( get_bloginfo( 'version' ), $plugin_data['requires'], '>=' );
-	$plugin_data['php_compatible'] = version_compare( phpversion(), $plugin_data['requires_php'], '>=' );
-
 	$plugin_data = array_merge( $plugin_data, get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin ) );
+
+	// Check for headers in the plugin's PHP file, give precedence to the plugin headers.
+	$plugin_data['requires']     = ! empty( $plugin_data['RequiresWP'] ) ? $plugin_data['RequiresWP'] : $plugin_data['requires'];
+	$plugin_data['requires_php'] = ! empty( $plugin_data['RequiresPHP'] ) ? $plugin_data['RequiresPHP'] : $plugin_data['requires_php'];
+
+	$plugin_data['wp_compatible']  = is_wp_version_compatible( $plugin_data['requires'] );
+	$plugin_data['php_compatible'] = is_php_version_compatible( $plugin_data['requires_php'] );
 
 	if ( ! $plugin_data['wp_compatible'] && ! $plugin_data['php_compatible'] ) {
 		return new WP_Error(
 			'plugin_wp_php_incompatible',
 			sprintf(
-				/* translators: %s: plugin name */
+				/* translators: %s: Plugin name. */
 				__( '<strong>Error:</strong> Current WordPress and PHP versions do not meet minimum requirements for %s.' ),
 				$plugin_data['Name']
 			)
@@ -1117,7 +1134,7 @@ function validate_plugin_requirements( $plugin ) {
 		return new WP_Error(
 			'plugin_php_incompatible',
 			sprintf(
-				/* translators: %s: plugin name */
+				/* translators: %s: Plugin name. */
 				__( '<strong>Error:</strong> Current PHP version does not meet minimum requirements for %s.' ),
 				$plugin_data['Name']
 			)
@@ -1126,7 +1143,7 @@ function validate_plugin_requirements( $plugin ) {
 		return new WP_Error(
 			'plugin_wp_incompatible',
 			sprintf(
-				/* translators: %s: plugin name */
+				/* translators: %s: Plugin name. */
 				__( '<strong>Error:</strong> Current WordPress version does not meet minimum requirements for %s.' ),
 				$plugin_data['Name']
 			)
@@ -1806,7 +1823,8 @@ function get_admin_page_title() {
 
 	$hook = get_plugin_page_hook( $plugin_page, $pagenow );
 
-	$parent = $parent1 = get_admin_page_parent();
+	$parent  = get_admin_page_parent();
+	$parent1 = $parent;
 
 	if ( empty( $parent ) ) {
 		foreach ( (array) $menu as $menu_array ) {
@@ -2187,7 +2205,7 @@ function wp_add_privacy_policy_content( $plugin_name, $policy_text ) {
 	}
 
 	if ( ! class_exists( 'WP_Privacy_Policy_Content' ) ) {
-		require_once( ABSPATH . 'wp-admin/includes/misc.php' );
+		require_once( ABSPATH . 'wp-admin/includes/class-wp-privacy-policy-content.php' );
 	}
 
 	WP_Privacy_Policy_Content::add( $plugin_name, $policy_text );

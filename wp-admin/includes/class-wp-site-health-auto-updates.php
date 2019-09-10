@@ -57,7 +57,7 @@ class WP_Site_Health_Auto_Updates {
 	}
 
 	/**
-	 * Test if auto-updated related constants are set correctly.
+	 * Test if auto-updates related constants are set correctly.
 	 *
 	 * @since 5.2.0
 	 *
@@ -66,7 +66,7 @@ class WP_Site_Health_Auto_Updates {
 	 * @return array The test results.
 	 */
 	public function test_constants( $constant, $value ) {
-		if ( defined( $constant ) && constant( $constant ) != $allowed_constants[ $constant ] ) {
+		if ( defined( $constant ) && constant( $constant ) != $value ) {
 			return array(
 				'description' => sprintf(
 					/* translators: %s: Name of the constant used. */
@@ -86,6 +86,10 @@ class WP_Site_Health_Auto_Updates {
 	 * @return array The test results.
 	 */
 	public function test_wp_version_check_attached() {
+		if ( ! is_main_site() ) {
+			return;
+		}
+
 		$cookies = wp_unslash( $_COOKIE );
 		$timeout = 10;
 		$headers = array(
@@ -139,6 +143,7 @@ class WP_Site_Health_Auto_Updates {
 	 * @return array The test results.
 	 */
 	public function test_filters_automatic_updater_disabled() {
+		/** This filter is documented in wp-admin/includes/class-wp-automatic-updater.php */
 		if ( apply_filters( 'automatic_updater_disabled', false ) ) {
 			return array(
 				'description' => sprintf(
@@ -235,10 +240,11 @@ class WP_Site_Health_Auto_Updates {
 			}
 		}
 
+		/** This filter is documented in wp-admin/includes/class-wp-automatic-updater.php */
 		if ( $checkout && ! apply_filters( 'automatic_updates_is_vcs_checkout', true, ABSPATH ) ) {
 			return array(
 				'description' => sprintf(
-					// translators: 1: Folder name. 2: Version control directory. 3: Filter name.
+					/* translators: 1: Folder name. 2: Version control directory. 3: Filter name. */
 					__( 'The folder %1$s was detected as being under version control (%2$s), but the %3$s filter is allowing updates.' ),
 					'<code>' . $check_dir . '</code>',
 					"<code>$vcs_dir</code>",
@@ -251,7 +257,7 @@ class WP_Site_Health_Auto_Updates {
 		if ( $checkout ) {
 			return array(
 				'description' => sprintf(
-					// translators: 1: Folder name. 2: Version control directory.
+					/* translators: 1: Folder name. 2: Version control directory. */
 					__( 'The folder %1$s was detected as being under version control (%2$s).' ),
 					'<code>' . $check_dir . '</code>',
 					"<code>$vcs_dir</code>"
@@ -334,7 +340,7 @@ class WP_Site_Health_Auto_Updates {
 
 		if ( ! $checksums ) {
 			$description = sprintf(
-				// translators: %s: WordPress version
+				/* translators: %s: WordPress version. */
 				__( "Couldn't retrieve a list of the checksums for WordPress %s." ),
 				$wp_version
 			);
@@ -350,10 +356,10 @@ class WP_Site_Health_Auto_Updates {
 			if ( 'wp-content' == substr( $file, 0, 10 ) ) {
 				continue;
 			}
-			if ( ! file_exists( ABSPATH . '/' . $file ) ) {
+			if ( ! file_exists( ABSPATH . $file ) ) {
 				continue;
 			}
-			if ( ! is_writable( ABSPATH . '/' . $file ) ) {
+			if ( ! is_writable( ABSPATH . $file ) ) {
 				$unwritable_files[] = $file;
 			}
 		}
@@ -400,6 +406,7 @@ class WP_Site_Health_Auto_Updates {
 			);
 		}
 
+		/** This filter is documented in wp-admin/includes/class-core-upgrader.php */
 		if ( ! apply_filters( 'allow_dev_auto_core_updates', $wp_version ) ) {
 			return array(
 				'description' => sprintf(
@@ -431,6 +438,7 @@ class WP_Site_Health_Auto_Updates {
 			);
 		}
 
+		/** This filter is documented in wp-admin/includes/class-core-upgrader.php */
 		if ( ! apply_filters( 'allow_minor_auto_core_updates', true ) ) {
 			return array(
 				'description' => sprintf(

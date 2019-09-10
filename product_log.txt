@@ -1,1 +1,0 @@
-{"code":"Website1558079715","name":"test san pham nguong ton kho 1 - Website","categoryId":"129483","allowsSale":true,"description":"","hasVariants":false,"attributes":[],"inventories":[{"branchId":22820,"onHand":30,"minQuantity":5,"cost":20000,"reserved":0}],"images":[],"basePrice":20000,"weight":5}

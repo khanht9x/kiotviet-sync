@@ -523,7 +523,11 @@ function get_metadata( $meta_type, $object_id, $meta_key = '', $single = false )
 
 	if ( ! $meta_cache ) {
 		$meta_cache = update_meta_cache( $meta_type, array( $object_id ) );
-		$meta_cache = $meta_cache[ $object_id ];
+		if ( isset( $meta_cache[ $object_id ] ) ) {
+			$meta_cache = $meta_cache[ $object_id ];
+		} else {
+			$meta_cache = null;
+		}
 	}
 
 	if ( ! $meta_key ) {
@@ -699,7 +703,8 @@ function update_metadata_by_mid( $meta_type, $meta_id, $meta_value, $meta_key = 
 	}
 
 	// Fetch the meta and go on if it's found.
-	if ( $meta = get_metadata_by_mid( $meta_type, $meta_id ) ) {
+	$meta = get_metadata_by_mid( $meta_type, $meta_id );
+	if ( $meta ) {
 		$original_key = $meta->meta_key;
 		$object_id    = $meta->{$column};
 
@@ -811,7 +816,8 @@ function delete_metadata_by_mid( $meta_type, $meta_id ) {
 	}
 
 	// Fetch the meta and go on if it's found.
-	if ( $meta = get_metadata_by_mid( $meta_type, $meta_id ) ) {
+	$meta = get_metadata_by_mid( $meta_type, $meta_id );
+	if ( $meta ) {
 		$object_id = (int) $meta->{$column};
 
 		/** This action is documented in wp-includes/meta.php */
@@ -871,8 +877,8 @@ function delete_metadata_by_mid( $meta_type, $meta_id ) {
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @param string    $meta_type  Type of object metadata is for (e.g., comment, post, term, or user).
- * @param int|array $object_ids Array or comma delimited list of object IDs to update cache for
+ * @param string       $meta_type  Type of object metadata is for (e.g., comment, post, term, or user).
+ * @param string|int[] $object_ids Array or comma delimited list of object IDs to update cache for.
  * @return array|false Metadata cache for the specified objects, or false on failure.
  */
 function update_meta_cache( $meta_type, $object_ids ) {
@@ -906,7 +912,7 @@ function update_meta_cache( $meta_type, $object_ids ) {
 	 * @since 5.0.0
 	 *
 	 * @param mixed $check      Whether to allow updating the meta cache of the given type.
-	 * @param array $object_ids Array of object IDs to update the meta cache for.
+	 * @param int[] $object_ids Array of object IDs to update the meta cache for.
 	 */
 	$check = apply_filters( "update_{$meta_type}_metadata_cache", null, $object_ids );
 	if ( null !== $check ) {
@@ -1123,7 +1129,9 @@ function sanitize_meta( $meta_key, $meta_value, $object_type, $object_subtype = 
  *     @type bool   $single            Whether the meta key has one value per object, or an array of values per object.
  *     @type string $sanitize_callback A function or method to call when sanitizing `$meta_key` data.
  *     @type string $auth_callback     Optional. A function or method to call when performing edit_post_meta, add_post_meta, and delete_post_meta capability checks.
- *     @type bool   $show_in_rest      Whether data associated with this meta key can be considered public.
+ *     @type bool   $show_in_rest      Whether data associated with this meta key can be considered public and
+ *                                     should be accessible via the REST API. A custom post type must also declare
+ *                                     support for custom fields for registered meta to be accessible via REST.
  * }
  * @param string|array $deprecated Deprecated. Use `$args` instead.
  *

@@ -29,10 +29,10 @@ define( 'DB_USER', 'admin' );
 define( 'DB_PASSWORD', '943c7937503926d84' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'mariadb' );
+define( 'DB_HOST', 'localhost' );
 
 /** Database Charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8mb4' );
+define( 'DB_CHARSET', 'utf8' );
 
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
@@ -46,14 +46,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         '][:AVA8!y`}8B Oq%`imwSKKL|BVni~p(),o8.u:L6qkzK8 }ysa(7IfF~1Mq?RP' );
-define( 'SECURE_AUTH_KEY',  '<kW],{>jmd!qw8M*@w}+afSbZG:]+iW!Hh{OaK<tb}#>!A9%ePRRQQsc(K.awM&Y' );
-define( 'LOGGED_IN_KEY',    'HsHo>3$^mC<8J,!kc,2hdJkW6[QYaFuG3)8:bonTFbX{0_R<_lcxcU<W28YL[y)D' );
-define( 'NONCE_KEY',        'hSQV`AUnrz It9;lg`[Llr22]!VbJ7^+b,QI3*pd3[Os<*CfuHen]l/>QtR{tO41' );
-define( 'AUTH_SALT',        'IJH>gkNzs/j5E?!!L7{A^3Yd!~gp_>4rIix<9ODqVE4.{6;~np[]T^YaDH)R ~vo' );
-define( 'SECURE_AUTH_SALT', '`cKV70W}j #?Ub:L(6WM`JQF$xIrhY(,8qDo96/,`1a]Z[nX)0&GUb.Q6-C{OQ_4' );
-define( 'LOGGED_IN_SALT',   'Xl4.uD{{-R!Wij 3*Z >GpR7_0]S?k[*v,4x304fpqUbyOe/P>|@Z}Tj)@<5M]}h' );
-define( 'NONCE_SALT',       '/`G`>2,g`6Ae2e#$C1,&3oBG)`k^}rMH~<Og:Th}[0TT/mB>q4`JJ,{hMLn.yu!g' );
+define( 'AUTH_KEY',         'put your unique phrase here' );
+define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
+define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
+define( 'NONCE_KEY',        'put your unique phrase here' );
+define( 'AUTH_SALT',        'put your unique phrase here' );
+define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
+define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
+define( 'NONCE_SALT',       'put your unique phrase here' );
 
 /**#@-*/
 
@@ -77,9 +77,7 @@ $table_prefix = 'wp_';
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define( 'WP_DEBUG', true );
-define( 'WP_DEBUG_LOG', true );
-define( 'SAVEQUERIES', true );
+define( 'WP_DEBUG', false );
 
 /* That's all, stop editing! Happy publishing. */
 

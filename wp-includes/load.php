@@ -13,7 +13,7 @@
  * @return string The HTTP protocol. Default: HTTP/1.0.
  */
 function wp_get_server_protocol() {
-	$protocol = $_SERVER['SERVER_PROTOCOL'];
+	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : '';
 	if ( ! in_array( $protocol, array( 'HTTP/1.1', 'HTTP/2', 'HTTP/2.0' ) ) ) {
 		$protocol = 'HTTP/1.0';
 	}
@@ -26,7 +26,7 @@ function wp_get_server_protocol() {
  * @since 2.1.0
  * @access private
  */
-function wp_unregister_GLOBALS() {
+function wp_unregister_GLOBALS() {  // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
 	if ( ! ini_get( 'register_globals' ) ) {
 		return;
 	}
@@ -109,7 +109,8 @@ function wp_fix_server_vars() {
 	// Fix empty PHP_SELF
 	$PHP_SELF = $_SERVER['PHP_SELF'];
 	if ( empty( $PHP_SELF ) ) {
-		$_SERVER['PHP_SELF'] = $PHP_SELF = preg_replace( '/(\?.*)?$/', '', $_SERVER['REQUEST_URI'] );
+		$_SERVER['PHP_SELF'] = preg_replace( '/(\?.*)?$/', '', $_SERVER['REQUEST_URI'] );
+		$PHP_SELF            = $_SERVER['PHP_SELF'];
 	}
 }
 
@@ -135,17 +136,24 @@ function wp_check_php_mysql_versions() {
 		$protocol = wp_get_server_protocol();
 		header( sprintf( '%s 500 Internal Server Error', $protocol ), true, 500 );
 		header( 'Content-Type: text/html; charset=utf-8' );
-		/* translators: 1: Current PHP version number, 2: WordPress version number, 3: Minimum required PHP version number */
-		die( sprintf( __( 'Your server is running PHP version %1$s but WordPress %2$s requires at least %3$s.' ), $php_version, $wp_version, $required_php_version ) );
+		/* translators: 1: Current PHP version number, 2: WordPress version number, 3: Minimum required PHP version number. */
+		printf( __( 'Your server is running PHP version %1$s but WordPress %2$s requires at least %3$s.' ), $php_version, $wp_version, $required_php_version );
+		exit( 1 );
 	}
 
 	if ( ! extension_loaded( 'mysql' ) && ! extension_loaded( 'mysqli' ) && ! extension_loaded( 'mysqlnd' ) && ! file_exists( WP_CONTENT_DIR . '/db.php' ) ) {
+		require_once( ABSPATH . WPINC . '/functions.php' );
 		wp_load_translations_early();
-
-		$protocol = wp_get_server_protocol();
-		header( sprintf( '%s 500 Internal Server Error', $protocol ), true, 500 );
-		header( 'Content-Type: text/html; charset=utf-8' );
-		die( __( 'Your PHP installation appears to be missing the MySQL extension which is required by WordPress.' ) );
+		$args = array(
+			'exit' => false,
+			'code' => 'mysql_not_found',
+		);
+		wp_die(
+			__( 'Your PHP installation appears to be missing the MySQL extension which is required by WordPress.' ),
+			__( 'Requirements Not Met' ),
+			$args
+		);
+		exit( 1 );
 	}
 }
 
@@ -344,7 +352,7 @@ function wp_debug_mode() {
 	}
 
 	if ( defined( 'XMLRPC_REQUEST' ) || defined( 'REST_REQUEST' ) || ( defined( 'WP_INSTALLING' ) && WP_INSTALLING ) || wp_doing_ajax() || wp_is_json_request() ) {
-		@ini_set( 'display_errors', 0 );
+		ini_set( 'display_errors', 0 );
 	}
 }
 
@@ -398,7 +406,7 @@ function wp_set_lang_dir() {
  *
  * @since 2.5.0
  *
- * @global wpdb $wpdb The WordPress database class.
+ * @global wpdb $wpdb WordPress database abstraction object.
  */
 function require_wp_db() {
 	global $wpdb;
@@ -429,7 +437,7 @@ function require_wp_db() {
  * @since 3.0.0
  * @access private
  *
- * @global wpdb   $wpdb         The WordPress database class.
+ * @global wpdb   $wpdb         WordPress database abstraction object.
  * @global string $table_prefix The database table prefix.
  */
 function wp_set_wpdb_vars() {
@@ -481,8 +489,8 @@ function wp_set_wpdb_vars() {
 	if ( is_wp_error( $prefix ) ) {
 		wp_load_translations_early();
 		wp_die(
-			/* translators: 1: $table_prefix, 2: wp-config.php */
 			sprintf(
+				/* translators: 1: $table_prefix, 2: wp-config.php */
 				__( '<strong>ERROR</strong>: %1$s in %2$s can only contain numbers, letters, and underscores.' ),
 				'<code>$table_prefix</code>',
 				'<code>wp-config.php</code>'
@@ -627,7 +635,8 @@ function wp_get_mu_plugins() {
 	if ( ! is_dir( WPMU_PLUGIN_DIR ) ) {
 		return $mu_plugins;
 	}
-	if ( ! $dh = opendir( WPMU_PLUGIN_DIR ) ) {
+	$dh = opendir( WPMU_PLUGIN_DIR );
+	if ( ! $dh ) {
 		return $mu_plugins;
 	}
 	while ( ( $plugin = readdir( $dh ) ) !== false ) {
@@ -899,6 +908,7 @@ function is_protected_ajax_action() {
 function wp_set_internal_encoding() {
 	if ( function_exists( 'mb_internal_encoding' ) ) {
 		$charset = get_option( 'blog_charset' );
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 		if ( ! $charset || ! @mb_internal_encoding( $charset ) ) {
 			mb_internal_encoding( 'UTF-8' );
 		}
@@ -975,7 +985,7 @@ function wp_clone( $object ) {
  *
  * @since 1.5.1
  *
- * @global WP_Screen $current_screen
+ * @global WP_Screen $current_screen WordPress current screen object.
  *
  * @return bool True if inside WordPress administration interface, false otherwise.
  */
@@ -999,7 +1009,7 @@ function is_admin() {
  *
  * @since 3.1.0
  *
- * @global WP_Screen $current_screen
+ * @global WP_Screen $current_screen WordPress current screen object.
  *
  * @return bool True if inside WordPress blog administration pages.
  */
@@ -1021,9 +1031,12 @@ function is_blog_admin() {
  * Does not check if the user is an administrator; use current_user_can()
  * for checking roles and capabilities.
  *
+ * Does not check if the site is a Multisite network; use is_multisite()
+ * for checking if Multisite is enabled.
+ *
  * @since 3.1.0
  *
- * @global WP_Screen $current_screen
+ * @global WP_Screen $current_screen WordPress current screen object.
  *
  * @return bool True if inside WordPress network administration pages.
  */
@@ -1047,7 +1060,7 @@ function is_network_admin() {
  *
  * @since 3.1.0
  *
- * @global WP_Screen $current_screen
+ * @global WP_Screen $current_screen WordPress current screen object.
  *
  * @return bool True if inside WordPress user administration pages.
  */
@@ -1128,7 +1141,7 @@ function get_current_network_id() {
  * @since 3.4.0
  * @access private
  *
- * @global WP_Locale $wp_locale The WordPress date and time locale object.
+ * @global WP_Locale $wp_locale WordPress date and time locale object.
  *
  * @staticvar bool $loaded
  */
@@ -1157,7 +1170,8 @@ function wp_load_translations_early() {
 	// General libraries
 	require_once ABSPATH . WPINC . '/plugin.php';
 
-	$locales = $locations = array();
+	$locales   = array();
+	$locations = array();
 
 	while ( true ) {
 		if ( defined( 'WPLANG' ) ) {

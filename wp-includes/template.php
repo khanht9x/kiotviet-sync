@@ -57,7 +57,7 @@ function get_query_template( $type, $templates = array() ) {
 	 * @since 4.8.0 The `$type` and `$templates` parameters were added.
 	 *
 	 * @param string $template  Path to the template. See locate_template().
-	 * @param string $type      Filename without extension.
+	 * @param string $type      Sanitized filename without extension.
 	 * @param array  $templates A list of template candidates, in descending order of priority.
 	 */
 	return apply_filters( "{$type}_template", $template, $type, $templates );
@@ -373,7 +373,7 @@ function get_home_template() {
 function get_front_page_template() {
 	$templates = array( 'front-page.php' );
 
-	return get_query_template( 'front_page', $templates );
+	return get_query_template( 'frontpage', $templates );
 }
 
 /**
@@ -386,12 +386,12 @@ function get_front_page_template() {
  *
  * @see get_query_template()
  *
- * @return string Full path to front page template file.
+ * @return string Full path to privacy policy template file.
  */
 function get_privacy_policy_template() {
 	$templates = array( 'privacy-policy.php' );
 
-	return get_query_template( 'privacy_policy', $templates );
+	return get_query_template( 'privacypolicy', $templates );
 }
 
 /**
@@ -684,13 +684,13 @@ function locate_template( $template_names, $load = false, $require_once = true )
  * @since 1.5.0
  *
  * @global array      $posts
- * @global WP_Post    $post
+ * @global WP_Post    $post          Global post object.
  * @global bool       $wp_did_header
- * @global WP_Query   $wp_query
- * @global WP_Rewrite $wp_rewrite
- * @global wpdb       $wpdb
+ * @global WP_Query   $wp_query      WordPress Query object.
+ * @global WP_Rewrite $wp_rewrite    WordPress rewrite component.
+ * @global wpdb       $wpdb          WordPress database abstraction object.
  * @global string     $wp_version
- * @global WP         $wp
+ * @global WP         $wp            Current WordPress environment instance.
  * @global int        $id
  * @global WP_Comment $comment
  * @global int        $user_ID

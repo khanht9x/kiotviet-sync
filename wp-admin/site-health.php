@@ -16,7 +16,7 @@ require_once( dirname( __FILE__ ) . '/admin.php' );
 
 $title = __( 'Site Health Status' );
 
-if ( ! current_user_can( 'install_plugins' ) ) {
+if ( ! current_user_can( 'view_site_health_checks' ) ) {
 	wp_die( __( 'Sorry, you are not allowed to access site health information.' ), '', 403 );
 }
 
@@ -52,11 +52,17 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 
 	<nav class="health-check-tabs-wrapper hide-if-no-js" aria-label="<?php esc_attr_e( 'Secondary menu' ); ?>">
 		<a href="<?php echo esc_url( admin_url( 'site-health.php' ) ); ?>" class="health-check-tab active" aria-current="true">
-			<?php _e( 'Status' ); ?>
+			<?php
+			/* translators: Tab heading for Site Health Status page. */
+			_ex( 'Status', 'Site Health' );
+			?>
 		</a>
 
 		<a href="<?php echo esc_url( admin_url( 'site-health.php?tab=debug' ) ); ?>" class="health-check-tab">
-			<?php _e( 'Info' ); ?>
+			<?php
+			/* translators: Tab heading for Site Health Info page. */
+			_ex( 'Info', 'Site Health' );
+			?>
 		</a>
 	</nav>
 </div>
@@ -90,16 +96,22 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 		<p><?php _e( 'The site health check shows critical information about your WordPress configuration and items that require your attention.' ); ?></p>
 
 		<div class="site-health-issues-wrapper" id="health-check-issues-critical">
-			<h3>
-				<span class="issue-count">0</span> <?php _e( 'Critical issues' ); ?>
+			<h3 class="site-health-issue-count-title">
+				<?php
+					/* translators: %s: Number of critical issues found. */
+					printf( _n( '%s Critical issue', '%s Critical issues', 0 ), '<span class="issue-count">0</span>' );
+				?>
 			</h3>
 
 			<div id="health-check-site-status-critical" class="health-check-accordion issues"></div>
 		</div>
 
 		<div class="site-health-issues-wrapper" id="health-check-issues-recommended">
-			<h3>
-				<span class="issue-count">0</span> <?php _e( 'Recommended improvements' ); ?>
+			<h3 class="site-health-issue-count-title">
+				<?php
+					/* translators: %s: Number of recommended improvements. */
+					printf( _n( '%s Recommended improvement', '%s Recommended improvements', 0 ), '<span class="issue-count">0</span>' );
+				?>
 			</h3>
 
 			<div id="health-check-site-status-recommended" class="health-check-accordion issues"></div>
@@ -109,12 +121,16 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 	<div class="site-health-view-more">
 		<button type="button" class="button site-health-view-passed" aria-expanded="false" aria-controls="health-check-issues-good">
 			<?php _e( 'Passed tests' ); ?>
+			<span class="icon"></span>
 		</button>
 	</div>
 
 	<div class="site-health-issues-wrapper hidden" id="health-check-issues-good">
-		<h3>
-			<span class="issue-count">0</span> <?php _e( 'Items with no issues detected' ); ?>
+		<h3 class="site-health-issue-count-title">
+			<?php
+				/* translators: %s: Number of items with no issues. */
+				printf( _n( '%s Item with no issues detected', '%s Items with no issues detected', 0 ), '<span class="issue-count">0</span>' );
+			?>
 		</h3>
 
 		<div id="health-check-site-status-good" class="health-check-accordion issues"></div>

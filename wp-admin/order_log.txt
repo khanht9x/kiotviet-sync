@@ -1,1 +1,0 @@
-{"id":128,"order_id":6280,"name":"hang hoa thuoc tinh - khanh 1 - c, a","product_id":6274,"variation_id":6275,"quantity":1,"tax_class":"","subtotal":"20000","subtotal_tax":"0","total":"20000","total_tax":"0","taxes":{"total":[],"subtotal":[]},"meta_data":[{"id":1034,"key":"vi","value":"c"},{"id":1035,"key":"tt5","value":"a"},{"id":1042,"key":"_reduced_stock","value":"1"}]}

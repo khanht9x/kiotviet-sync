@@ -184,7 +184,7 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 			'slug'       => 'slug',
 		);
 
-		$prepared_args = array();
+		$prepared_args = array( 'taxonomy' => $this->taxonomy );
 
 		/*
 		 * For each known parameter which is both registered and present in the request,
@@ -249,7 +249,7 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 			// Used when calling wp_count_terms() below.
 			$prepared_args['object_ids'] = $prepared_args['post'];
 		} else {
-			$query_result = get_terms( $this->taxonomy, $prepared_args );
+			$query_result = get_terms( $prepared_args );
 		}
 
 		$count_args = $prepared_args;
@@ -282,7 +282,7 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 
 		$response->header( 'X-WP-TotalPages', (int) $max_pages );
 
-		$base = add_query_arg( $request->get_query_params(), rest_url( $this->namespace . '/' . $this->rest_base ) );
+		$base = add_query_arg( urlencode_deep( $request->get_query_params() ), rest_url( $this->namespace . '/' . $this->rest_base ) );
 		if ( $page > 1 ) {
 			$prev_page = $page - 1;
 
@@ -423,7 +423,8 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 			 * If we're going to inform the client that the term already exists,
 			 * give them the identifier for future use.
 			 */
-			if ( $term_id = $term->get_error_data( 'term_exists' ) ) {
+			$term_id = $term->get_error_data( 'term_exists' );
+			if ( $term_id ) {
 				$existing_term = get_term( $term_id, $this->taxonomy );
 				$term->add_data( $existing_term->term_id, 'term_exists' );
 				$term->add_data(
@@ -855,6 +856,10 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 	 * @return array Item schema data.
 	 */
 	public function get_item_schema() {
+		if ( $this->schema ) {
+			return $this->add_additional_fields_schema( $this->schema );
+		}
+
 		$schema = array(
 			'$schema'    => 'http://json-schema.org/draft-04/schema#',
 			'title'      => 'post_tag' === $this->taxonomy ? 'tag' : $this->taxonomy,
@@ -923,7 +928,8 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 
 		$schema['properties']['meta'] = $this->meta->get_field_schema();
 
-		return $this->add_additional_fields_schema( $schema );
+		$this->schema = $schema;
+		return $this->add_additional_fields_schema( $this->schema );
 	}
 
 	/**
